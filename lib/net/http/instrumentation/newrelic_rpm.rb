@@ -16,4 +16,8 @@ end
 Net::HTTPResponse.class_eval do
   include NewRelic::Agent::MethodTracer 
   add_method_tracer :read_body, 'Custom/Net/Http/HTTPResponse/read_body', :metric => false
+  class << self
+    include NewRelic::Agent::MethodTracer
+    add_method_tracer :read_new, 'Custom/Net/Http/HTTPResponse/read_new', :metric => false 
+  end
 end
